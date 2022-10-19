@@ -5,9 +5,9 @@ import fs from 'fs';
 import data from './data.json' assert { type: "json" };
 
 
+dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
-dotenv.config();
 app.use(express.json());
 app.use(cors());
 app.set('trust proxy', true);
