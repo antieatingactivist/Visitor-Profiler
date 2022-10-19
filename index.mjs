@@ -4,11 +4,11 @@ import cors from 'cors';
 import fs from 'fs';
 import data from './data.json' assert { type: "json" };
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
-import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use(express.json());
@@ -20,7 +20,7 @@ app.set('trust proxy', true);
 app.get("/", function(req, res) {
     data.push(req.headers);
     writeFile(JSON.stringify(data, null, 2));
-    // res.json(req.headers);
+    console.log(req.headers);
     res.sendFile(__dirname +  "/index.html");  
 });
 
