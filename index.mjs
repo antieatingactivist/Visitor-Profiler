@@ -7,11 +7,10 @@ const PORT = process.env.PORT || 3000;
 dotenv.config();
 app.use(express.json());
 app.use(cors());
+app.set('trust proxy', true)
 
-
-app.get("/", function(req, res) {
-    console.log(req.headers);
-
+app.post("/", function(req, res) {
+    console.log(req)
     res.json(req.headers);  
 });
 
