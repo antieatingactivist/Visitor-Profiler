@@ -18,11 +18,15 @@ app.set('trust proxy', true);
 
 
 app.get("/", function(req, res) {
-    data.push(req.headers);
+
+    if (req.headers["x-forwarded-for"].split('.')[0] !== "10") {
+        data.push(req.headers);
+    }
+
     writeFile(JSON.stringify(data, null, 2));
-    console.log(req.headers);
     res.sendFile(__dirname +  "/index.html");  
 });
+
 
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}!`);

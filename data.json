@@ -62,5 +62,13 @@
     "content-type": "application/json",
     "accept": "*/*",
     "content-length": "0"
+  },
+  {
+    "host": "localhost:3004",
+    "user-agent": "insomnia/2022.6.0",
+    "cookie": "connect.sid=s%3AtKGSiG3Bd7j6PelRnccRZr_a8RmPezsn.ONycDvqhTZNX9kVpW2HzGXKG55%2Bh7qGVgp4vT7L0qtg",
+    "content-type": "application/json",
+    "accept": "*/*",
+    "content-length": "0"
   }
 ]
