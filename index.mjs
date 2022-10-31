@@ -22,7 +22,7 @@ app.set('trust proxy', true);
 app.get("/", async function(req, res) {
     const ip = req.headers["x-forwarded-for"];
     console.log(ip);
-    if (ip.split('.')[0] !== "10") {
+    if (ip.includes("10.0.")) {
         const location = await axios.get(`https://api.ipdata.co/${ip}?api-key=${API_KEY}`);
         const object = {...req.headers, location: {...location.data}}
         data.push(object);
