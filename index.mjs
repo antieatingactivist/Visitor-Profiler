@@ -45,7 +45,7 @@ app.get("/raw", function(req, res) {
 });
 
 app.get("/purge", function(req, res) {
-    data = [];
+    data.splice(0,data.length);
     res.json(data);  
 });
 
