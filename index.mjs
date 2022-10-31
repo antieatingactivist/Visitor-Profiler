@@ -51,6 +51,7 @@ app.get("/data", function(req, res) {
         object.ip = visitor['x-forwarded-for'];
         object.time = new Date(visitor['x-start-time']).toLocaleString();
         object.userAgent = visitor['user-agent'];
+        object.location = visitor['location']['city'];
  
 
         if (visitor['from']?.includes('bot') || object.userAgent?.includes('Expanse')) {
