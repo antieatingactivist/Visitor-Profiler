@@ -33,12 +33,6 @@ app.get("/", async function(req, res) {
     res.sendFile(__dirname +  "/index.html");  
 });
 
-app.get("/test", async function(req, res) {
-    const location = await axios.get(`https://api.ipdata.co/8.8.8.8?api-key=${API_KEY}`);
-
-    res.json(location.data);
-
-})
 
 app.get("/raw", function(req, res) {
     res.json(data);  
