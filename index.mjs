@@ -24,6 +24,7 @@ app.get("/", async function(req, res) {
     console.log(ip);
     if (ip.split('.')[0] !== "10") {
         const location = await axios.get(`https://api.ipdata.co/${ip}?api-key=${API_KEY}`);
+        console.log(location);
         const object = {...req.headers, location: {...location.data}}
         data.push(object);
     }
