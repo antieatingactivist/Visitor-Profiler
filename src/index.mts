@@ -6,6 +6,7 @@ import data from './data.json' assert { type: "json" };
 import path from 'path';
 import { fileURLToPath } from 'url';
 import axios from 'axios';
+import Visitor from './models/Visitor.mjs';
 
 
 dotenv.config();
@@ -29,7 +30,9 @@ app.get("/", async function(req, res) {
         const location = await axios.get(`https://api.ipdata.co/${ip}?api-key=${API_KEY}`);
 
         const object = {...req.headers, location: {...location.data}}
-        data.push(object);
+        // data.push(object);
+        await Visitor.create({data: object});
+
     }
 
     writeFile(JSON.stringify(data, null, 2));

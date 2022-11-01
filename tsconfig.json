@@ -3,10 +3,11 @@
       "module": "esnext",
       "resolveJsonModule": true,
       "esModuleInterop": true,
-      "target": "es5",
+      "target": "es2021",
       "moduleResolution": "node",
       "sourceMap": true,
-      "outDir": "dist"
+      "outDir": "dist",
+      "allowJs": true
     },
     "lib": ["es2015"],
     "include": [
