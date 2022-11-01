@@ -1,7 +1,9 @@
-import { Model, DataTypes } from 'sequelize';
+import { Model, DataTypes, InferAttributes, InferCreationAttributes, CreationOptional } from 'sequelize';
 import sequelize from '../config/connection.mjs'
 
-class Visitor extends Model {
+class Visitor extends Model<InferAttributes<Visitor>, InferCreationAttributes<Visitor>> {
+    declare id: CreationOptional<number>;
+    declare data: object;
 }
 
 Visitor.init(

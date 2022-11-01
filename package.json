@@ -7,7 +7,7 @@
   "scripts": {
     "start": "npx tsc && node dist/index.mjs",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seed": "node src/seeds/index.mjs"
+    "seed": "node dist/seeds/index.mjs"
   },
   "repository": {
     "type": "git",
