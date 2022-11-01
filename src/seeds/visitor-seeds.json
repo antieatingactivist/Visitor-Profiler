@@ -1,9 +1,7 @@
-
 [
      {
         "data": {
  
-
             "host": "visit.home.jgarrettcorbin.com",
             "x-real-ip": "0.0.0.0",
             "x-start-time": "Monday, 31-Oct-2022 06:31:38 GMT",
@@ -78,9 +76,7 @@
                 "blocklists": []
               },
               "count": "11"
-            
-
+            }
         }
     }
-}
 ]
