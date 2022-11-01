@@ -25,7 +25,6 @@ app.get("/", async function(req, res) {
     
     if (ip && ip.split('.')[0] !== "10") {
         const location = await axios.get(`https://api.ipdata.co/${ip}?api-key=${API_KEY}`);
-
         const object = {...req.headers, location: {...location.data}}
 
         await Visitor.create({data: object});
@@ -53,18 +52,18 @@ app.get("/data", async function(_req, res) {
         const visitorData = visitor.data;
 
         let object = {
-            ip: 'x-forwarded-for' in visitorData ? visitorData['x-forwarded-for'] : "",
-            time: 'x-start-time' in visitorData ? new Date(visitorData['x-start-time']).toLocaleString() : "",
-            userAgent: 'user-agent' in visitorData ? visitorData['user-agent'] : "",
-            city: "",
-            region: "",
-            country: ""
+            ip: visitorData['x-forwarded-for'],
+            time: new Date(visitorData['x-start-time']).toLocaleString(),
+            userAgent: visitorData['user-agent'],
+            city: visitorData['location']['city'],
+            region: visitorData['location']['region'],
+            country: visitorData['location']['country_name']
         }
-        if ('location' in visitorData) {
-        object.city = visitorData['location']['city'];
-        object.region = visitorData['location']['region'];
-        object.country = visitorData['location']['country_name'];
-        }
+        // if ('location' in visitorData) {
+        // object.city = visitorData['location']['city'];
+        // object.region = visitorData['location']['region'];
+        // object.country = visitorData['location']['country_name'];
+        // }
  
 
         if (!(visitor['from']?.includes('bot') || object.userAgent?.includes('Expanse'))) {
