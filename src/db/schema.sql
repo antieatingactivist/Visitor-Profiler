@@ -1,0 +1,4 @@
+
+DROP DATABASE IF EXISTS visitor_db;
+
+CREATE DATABASE visitor_db;
