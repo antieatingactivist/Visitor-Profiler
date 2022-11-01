@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "module": "esnext",
+      "resolveJsonModule": true,
+      "esModuleInterop": true,
+      "target": "es2021",
+      "moduleResolution": "node",
+      "sourceMap": true,
+      "outDir": "dist",
+      "allowJs": true
+    },
+    "lib": ["es2015"],
+    "include": [
+        "src"
+      ]
+  }
