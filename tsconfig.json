@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "module": "esnext",
+      "resolveJsonModule": true,
+      "esModuleInterop": true,
+      "target": "es5",
+      "moduleResolution": "node",
+      "sourceMap": true,
+      "outDir": "dist"
+    },
+    "lib": ["es2015"],
+    "include": [
+        "src"
+      ]
+  }
