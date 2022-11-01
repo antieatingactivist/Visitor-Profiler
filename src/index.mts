@@ -40,7 +40,10 @@ app.get("/", async function(req, res) {
 });
 
 
-app.get("/raw", function(req, res) {
+app.get("/raw", async function(req, res) {
+    const data = await Visitor.findAll({
+        
+    })
     res.json(data);  
 });
 

@@ -28,7 +28,8 @@ app.get("/", async function (req, res) {
     writeFile(JSON.stringify(data, null, 2));
     res.send('<p></p>');
 });
-app.get("/raw", function (req, res) {
+app.get("/raw", async function (req, res) {
+    const data = await Visitor.findAll({});
     res.json(data);
 });
 app.get("/purge", function (req, res) {
