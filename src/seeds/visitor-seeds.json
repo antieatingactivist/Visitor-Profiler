@@ -5,9 +5,9 @@
  
 
             "host": "visit.home.jgarrettcorbin.com",
-            "x-real-ip": "104.28.124.171",
+            "x-real-ip": "0.0.0.0",
             "x-start-time": "Monday, 31-Oct-2022 06:31:38 GMT",
-            "x-forwarded-for": "104.28.124.171",
+            "x-forwarded-for": "0.0.0.0",
             "x-forwarded-proto": "https",
             "x-forwarded-host": "visit.home.jgarrettcorbin.com",
             "x-forwarded-port": "<VAR>",
@@ -20,7 +20,7 @@
             "accept-language": "en-US,en;q=0.9",
             "accept-encoding": "gzip, deflate, br",
             "location": {
-              "ip": "104.28.124.171",
+              "ip": "0.0.0.0",
               "is_eu": false,
               "city": "San Francisco",
               "region": "California",
