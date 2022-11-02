@@ -14,7 +14,7 @@ interface IVisitor {
 function App() {
   const [visitorData, setVisitorData] = useState<IVisitor[]>([]);
   const getData = async () => {
-   const response = await fetch("http://localhost:3004/data");
+   const response = await fetch("/data");
    const data = await response.json();
    console.log(data);
    setVisitorData(data);
