@@ -1,8 +1,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-// import path from 'path';
-// import { fileURLToPath } from 'url';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import axios from 'axios';
 import { Visitor } from './models/index.mjs';
 
@@ -11,15 +11,17 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 const API_KEY = process.env.API_KEY;
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 app.use(express.json());
 app.use(cors());
+// app.use(express.static('views'));
+app.use(express.static(path.join(__dirname, 'views')));
 app.set('trust proxy', true);
 
 
 
-app.get("/", async function(req, res) {
+app.get("/hit", async function(req, res) {
     const ip: string = req.headers["x-forwarded-for"] as string;
     // const ip = "11.0.0.0";
     
@@ -33,6 +35,7 @@ app.get("/", async function(req, res) {
 
     res.send('<p></p>');
 });
+
 
 
 app.get("/raw", async function(_req, res) {
@@ -57,13 +60,8 @@ app.get("/data", async function(_req, res) {
             userAgent: visitorData['user-agent'],
             city: visitorData['location']['city'],
             region: visitorData['location']['region'],
-            country: visitorData['location']['country_name']
+            country: `${visitorData['location']['emoji_flag']} ${visitorData['location']['country_name']}`,
         }
-        // if ('location' in visitorData) {
-        // object.city = visitorData['location']['city'];
-        // object.region = visitorData['location']['region'];
-        // object.country = visitorData['location']['country_name'];
-        // }
  
 
         if (!(visitor['from']?.includes('bot') || object.userAgent?.includes('Expanse'))) {
