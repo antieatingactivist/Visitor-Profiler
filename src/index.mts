@@ -36,6 +36,11 @@ app.get("/hit", async function(req, res) {
 });
 
 
+app.get("/raw/:id", async function(req, res) {
+    const data = await Visitor.findByPk(req.params.id, {});
+    console.log(req.params.id);
+    res.json(data);  
+});
 
 app.get("/raw", async function(_req, res) {
     const data = await Visitor.findAll({});
@@ -54,6 +59,7 @@ app.get("/data", async function(_req, res) {
         const visitorData = visitor.data;
 
         let object = {
+            id: visitor.id,
             ip: visitorData['x-forwarded-for'],
             time: new Date(visitorData['x-start-time']).toLocaleString(),
             userAgent: visitorData['user-agent'],
