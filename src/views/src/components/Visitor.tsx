@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+
 type Props = {
     visitor: IVisitor;
 }
@@ -11,7 +12,7 @@ export interface IVisitor {
     city: string,
     region: string,
     country: string,
-  }
+}
 const dataPath = process.env.NODE_ENV === "development" ? "http://localhost:3004" : "";
 
 
