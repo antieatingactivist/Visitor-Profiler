@@ -10,7 +10,7 @@ const dataPath = process.env.NODE_ENV === "development" ? "http://localhost:3004
 
 function App() {
   const [visitorData, setVisitorData] = useState<IVisitor[]>([]);
-  const [reversed, setReversed] = useState(false);
+  const [reversed, setReversed] = useState(true);
 
   const getData = async (includeHidden?: boolean) => {
     const queryString = includeHidden ? "?showHidden=true" : "";
