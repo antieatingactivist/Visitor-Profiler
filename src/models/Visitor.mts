@@ -20,7 +20,7 @@ Visitor.init(
         },
         hidden: {
             type: DataTypes.BOOLEAN,
-            defaultValue: true,
+            defaultValue: false,
         }
 
     },

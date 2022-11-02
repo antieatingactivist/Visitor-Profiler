@@ -42,6 +42,22 @@ app.get("/raw/:id", async function(req, res) {
     res.json(data);  
 });
 
+app.put("/hide/:id", async function(req, res) {
+    const data = await Visitor.update(
+        { hidden: true },
+        { where: {id: req.params.id}}
+    )
+
+    res.json(data);
+});
+app.put("/show/:id", async function(req, res) {
+    const data = await Visitor.update(
+        { hidden: false },
+        { where: {id: req.params.id}}
+    )
+
+    res.json(data);
+});
 app.get("/raw", async function(_req, res) {
     const data = await Visitor.findAll({});
     res.json(data);  
@@ -52,6 +68,9 @@ app.get("/data", async function(_req, res) {
     const responseData = [];
     
     const visitors = await Visitor.findAll({
+        where: {
+            hidden: false
+        },
         raw: true,
     });
     for (let visitor of visitors) {
@@ -59,6 +78,7 @@ app.get("/data", async function(_req, res) {
         const visitorData = visitor.data;
 
         let object = {
+            hidden: visitor.hidden,
             id: visitor.id,
             ip: visitorData['x-forwarded-for'],
             time: new Date(visitorData['x-start-time']).toLocaleString(),
