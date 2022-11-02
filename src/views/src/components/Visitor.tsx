@@ -18,7 +18,7 @@ const dataPath = process.env.NODE_ENV === "development" ? "http://localhost:3004
 export function Visitor({visitor}: Props) {
     const [rawData, setRawData] = useState();
     const [showRaw, setShowRaw] = useState(false);
-    
+
     const getRaw = async (id: number) => {
         const show = !showRaw;
         if (show) {
@@ -34,7 +34,7 @@ export function Visitor({visitor}: Props) {
     }
     return (
         <div className="visitor">
-            <p>{visitor.ip}</p>
+            <p><b>{visitor.ip}</b></p>
             <p>{visitor.time}</p>
             <p>{visitor.userAgent}</p>
             <p>{visitor.city}</p>
