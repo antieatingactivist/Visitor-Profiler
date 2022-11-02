@@ -10,16 +10,18 @@ interface IVisitor {
   region: string,
   country: string,
 }
+const dataPath = process.env.NODE_ENV === "development" ? "http://localhost:3004/data" : "/data"
 
 function App() {
   const [visitorData, setVisitorData] = useState<IVisitor[]>([]);
   const getData = async () => {
-   const response = await fetch("/data");
+   const response = await fetch(dataPath);
    const data = await response.json();
-   console.log(data);
+
    setVisitorData(data);
 }
   useEffect(() => {
+    console.log(process.env.NODE_ENV);
     getData();
   },[])
   return (
