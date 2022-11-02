@@ -6,7 +6,7 @@
 
   "scripts": {
     "start": "npx tsc && npm run build-frontend && node dist/index.mjs",
-    "build-frontend": "cd src/views && npm run build",
+    "build-frontend": "cd src/views && npm i && npm run build ",
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed": "node dist/seeds/index.mjs"
   },
