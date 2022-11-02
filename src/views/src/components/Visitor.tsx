@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 type Props = {
     visitor: IVisitor;
 }
@@ -20,7 +20,7 @@ export function Visitor({visitor}: Props) {
     const [rawData, setRawData] = useState();
     const [showRaw, setShowRaw] = useState(false);
     const [collapsed, setCollapsed] = useState(false);
-    const [hidden, setHidden] = useState(visitor.hidden);
+    const [hidden, setHidden] = useState(false);
 
     const getRaw = async (id: number) => {
         const show = !showRaw;
@@ -47,12 +47,14 @@ export function Visitor({visitor}: Props) {
         setCollapsed(false);
         setHidden(false);
     }
-    const classString = hidden ? "visitor basic-div hidden" : "visitor basic-div";
+    const classString = visitor.hidden ? "visitor basic-div hidden" : "visitor basic-div";
+
     return (
         <>
         {
             collapsed ?
             <div className="visitor basic-div hidden">
+                
                 <p><b>{visitor.ip}</b></p>
                 <p className="warning">This entry is marked hidden and will not be shown again. Click "Show" to revert.</p>
                 <div className="button-block">
@@ -61,8 +63,6 @@ export function Visitor({visitor}: Props) {
             </div>
             :
             <div className={classString}>
-               
-                <p><b>{visitor.ip}</b></p>
                 <p>{visitor.time}</p>
                 <p>{visitor.userAgent}</p>
                 <p>{visitor.city}</p>
