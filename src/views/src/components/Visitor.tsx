@@ -61,7 +61,7 @@ export function Visitor({visitor}: Props) {
             </div>
             :
             <div className={classString}>
-                <p><b>{visitor.hidden}</b></p>
+               
                 <p><b>{visitor.ip}</b></p>
                 <p>{visitor.time}</p>
                 <p>{visitor.userAgent}</p>
