@@ -51,7 +51,10 @@ export function Visitor({visitor}: Props) {
             hidden ?
             <div className="visitor">
                 <p><b>{visitor.ip}</b></p>
-                <button onClick={() => show(visitor.id)}>Show</button>
+                <p className="warning">This entry is marked hidden and will not be shown again. Click "Show" to revert.</p>
+                <div className="button-block">
+                    <button onClick={() => show(visitor.id)}>Show</button>
+                </div>
             </div>
             :
             <div className="visitor">
@@ -61,10 +64,11 @@ export function Visitor({visitor}: Props) {
                 <p>{visitor.city}</p>
                 <p>{visitor.region}</p>
                 <p>{visitor.country}</p>
-                <button onClick={() => getRaw(visitor.id)}>{showRaw ? <>Hide</> : <>Show</>} Raw Data</button>
-                <button onClick={() => hide(visitor.id)}>Hide</button>
                 {showRaw && <pre>{JSON.stringify(rawData, null, 2)}</pre>}
-
+                <div className="button-block">
+                    <button onClick={() => getRaw(visitor.id)}>{showRaw ? <>Hide</> : <>Show</>} Raw Data</button>
+                    <button onClick={() => hide(visitor.id)}>Hide</button>
+                </div>
             </div>
         }
         </>
