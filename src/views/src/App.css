@@ -1,0 +1,14 @@
+body {
+  background-color: #282c34;
+
+}
+
+.visitor {
+  color: #ffffffdd;
+  background-color: #ffffff11;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  margin: 20px;
+  padding: 20px;
+  line-height: 5px;
+}

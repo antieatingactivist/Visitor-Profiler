@@ -5,7 +5,8 @@
   "main": "dist/index.mjs",
 
   "scripts": {
-    "start": "npx tsc && node dist/index.mjs",
+    "start": "npx tsc && npm run build-frontend && node dist/index.mjs",
+    "build-frontend": "cd src/views && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed": "node dist/seeds/index.mjs"
   },
