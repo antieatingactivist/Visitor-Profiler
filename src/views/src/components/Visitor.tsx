@@ -19,7 +19,8 @@ const dataPath = process.env.NODE_ENV === "development" ? "http://localhost:3004
 export function Visitor({visitor}: Props) {
     const [rawData, setRawData] = useState();
     const [showRaw, setShowRaw] = useState(false);
-    const [hidden, setHidden] = useState(false);
+    const [collapsed, setCollapsed] = useState(false);
+    const [hidden, setHidden] = useState(visitor.hidden);
 
     const getRaw = async (id: number) => {
         const show = !showRaw;
@@ -36,20 +37,22 @@ export function Visitor({visitor}: Props) {
         await fetch(`${dataPath}/hide/${id}`, {
             method: 'PUT'
         });
-        setHidden(true);
+        setCollapsed(true);
         setShowRaw(false);
     }
     const show = async (id: number) => {
         await fetch(`${dataPath}/show/${id}`, {
             method: 'PUT'
         });
+        setCollapsed(false);
         setHidden(false);
     }
+    const classString = hidden ? "visitor basic-div hidden" : "visitor basic-div";
     return (
         <>
         {
-            hidden ?
-            <div className="visitor basic-div">
+            collapsed ?
+            <div className="visitor basic-div hidden">
                 <p><b>{visitor.ip}</b></p>
                 <p className="warning">This entry is marked hidden and will not be shown again. Click "Show" to revert.</p>
                 <div className="button-block">
@@ -57,7 +60,8 @@ export function Visitor({visitor}: Props) {
                 </div>
             </div>
             :
-            <div className="visitor basic-div">
+            <div className={classString}>
+                <p><b>{visitor.hidden}</b></p>
                 <p><b>{visitor.ip}</b></p>
                 <p>{visitor.time}</p>
                 <p>{visitor.userAgent}</p>
@@ -67,7 +71,11 @@ export function Visitor({visitor}: Props) {
                 {showRaw && <pre>{JSON.stringify(rawData, null, 2)}</pre>}
                 <div className="button-block">
                     <button onClick={() => getRaw(visitor.id)}>{showRaw ? <>Hide</> : <>Show</>} Raw Data</button>
-                    <button onClick={() => hide(visitor.id)}>Hide</button>
+                    {hidden ? 
+                        <button onClick={() => show(visitor.id)}>Show</button>
+                        :
+                        <button onClick={() => hide(visitor.id)}>Hide</button>
+                    }
                 </div>
             </div>
         }

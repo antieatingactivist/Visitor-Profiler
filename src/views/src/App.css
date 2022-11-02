@@ -39,3 +39,7 @@ button {
   box-shadow: 6px 4px 4px #00000066;
   overflow: hidden;
 }
+
+.hidden {
+  opacity: .5;
+}
