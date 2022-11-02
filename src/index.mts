@@ -96,7 +96,8 @@ app.get("/data", async function(req, res) {
             userAgent: visitorData['user-agent'],
             city: visitorData['location']['city'],
             region: visitorData['location']['region'],
-            country: `${visitorData['location']['emoji_flag']} ${visitorData['location']['country_name']}`,
+            country: `${visitorData['location']['country_name']}`,
+            flag: `${visitorData['location']['emoji_flag']}`,
         }
  
 

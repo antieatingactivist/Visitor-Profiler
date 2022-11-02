@@ -12,6 +12,7 @@ export interface IVisitor {
     city: string,
     region: string,
     country: string,
+    flag: string
 }
 const dataPath = process.env.NODE_ENV === "development" ? "http://localhost:3004" : "";
 
@@ -69,7 +70,7 @@ export function Visitor({visitor}: Props) {
                 <p>{visitor.userAgent}</p>
                 <p>{visitor.city}</p>
                 <p>{visitor.region}</p>
-                <p>{visitor.country}</p>
+                <p>{visitor.flag} {visitor.country}</p>
                 {showRaw && <pre>{JSON.stringify(rawData, null, 2)}</pre>}
                 <div className="button-block">
                     <button onClick={() => getRaw(visitor.id)}>{showRaw ? <>Hide</> : <>Show</>} Raw Data</button>
@@ -78,6 +79,10 @@ export function Visitor({visitor}: Props) {
                         :
                         <button onClick={() => hide(visitor.id)}>Hide</button>
                     }
+                </div>
+                <div className="flag">
+                    
+                    {visitor.flag}
                 </div>
             </div>
         }

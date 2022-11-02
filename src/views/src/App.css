@@ -15,6 +15,17 @@ button {
   border-radius: 3px;
   
 }
+.flag {
+  position: absolute;
+  right: -10%;
+  bottom: -100%;
+  z-index: -1;
+  font-size: 30em;
+  opacity: .1;
+  filter: blur(10px);
+
+}
+
 .warning {
   font-size: .8em;
   color: #ff4444dd;
