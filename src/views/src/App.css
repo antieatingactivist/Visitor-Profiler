@@ -2,7 +2,14 @@ body {
   background-color: #282c34;
 
 }
-
+p {
+  margin : 2px;
+}
+button {
+  border: 1px solid #000000;
+  background-color: #00000022;
+  color: #ffffff;
+}
 .visitor {
   color: #ffffffdd;
   background-color: #ffffff11;
@@ -10,5 +17,6 @@ body {
   border-radius: 5px;
   margin: 20px;
   padding: 20px;
-  line-height: 5px;
+  box-shadow: 6px 4px 4px #00000066;
+
 }
