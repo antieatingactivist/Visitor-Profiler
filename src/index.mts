@@ -69,15 +69,21 @@ app.get("/count", async function(_req, res) {
 });
 
 
-app.get("/data", async function(_req, res) {
+app.get("/data", async function(req, res) {
+    console.log(req.query);
     const responseData = [];
-    
-    const visitors = await Visitor.findAll({
-        where: {
-            hidden: false
-        },
-        raw: true,
-    });
+    let visitors: Visitor[];
+    if (req.query.showHidden) {
+        visitors = await Visitor.findAll({
+            raw: true,
+        });
+    } else {
+        visitors = await Visitor.findAll({
+            where: { hidden: false },
+            raw: true,
+        });
+    }
+
     for (let visitor of visitors) {
 
         const visitorData = visitor.data;
