@@ -37,6 +37,7 @@ export function Visitor({visitor}: Props) {
             method: 'PUT'
         });
         setHidden(true);
+        setShowRaw(false);
     }
     const show = async (id: number) => {
         await fetch(`${dataPath}/show/${id}`, {
@@ -71,5 +72,5 @@ export function Visitor({visitor}: Props) {
             </div>
         }
         </>
-      );
-    }
+    );
+}
