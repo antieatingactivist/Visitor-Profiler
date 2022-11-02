@@ -1,5 +1,6 @@
 {
   "name": "views",
+  "homepage": "/stats",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -19,7 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && rm -rf ../../dist/views && mv build ../../dist/views",
+    "build": "react-scripts build && rm -rf ../../dist/views && mkdir ../../dist/views && mv build ../../dist/views/stats",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

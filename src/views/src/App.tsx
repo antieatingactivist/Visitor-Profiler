@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import { BrowserRouter } from 'react-router-dom';
+
 import './App.css';
 
 interface IVisitor {
@@ -14,7 +14,7 @@ interface IVisitor {
 function App() {
   const [visitorData, setVisitorData] = useState<IVisitor[]>([]);
   const getData = async () => {
-   const response = await fetch("/data");
+   const response = await fetch("http://localhost:3004/data");
    const data = await response.json();
    console.log(data);
    setVisitorData(data);
@@ -23,7 +23,7 @@ function App() {
     getData();
   },[])
   return (
-    <BrowserRouter basename='/stats'>
+
       <div className="App">
         {visitorData.map(visitor => (
           <div className="visitor">
@@ -36,7 +36,7 @@ function App() {
           </div>
         ))}
       </div>
-    </BrowserRouter>
+
   );
 }
 
