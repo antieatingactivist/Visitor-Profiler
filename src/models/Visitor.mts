@@ -4,6 +4,7 @@ import sequelize from '../config/connection.mjs'
 class Visitor extends Model {
     declare id: CreationOptional<number>;
     declare data: object;
+    declare hidden: boolean;
 }
 
 Visitor.init(
@@ -16,6 +17,10 @@ Visitor.init(
         },
         data: {
             type: DataTypes.JSON
+        },
+        hidden: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true,
         }
 
     },
