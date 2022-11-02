@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import { useState } from 'react';
 type Props = {
     visitor: IVisitor;
 }
@@ -44,12 +44,11 @@ export function Visitor({visitor}: Props) {
         });
         setHidden(false);
     }
-    console.log(!!visitor.hidden)
     return (
         <>
         {
             hidden ?
-            <div className="visitor">
+            <div className="visitor basic-div">
                 <p><b>{visitor.ip}</b></p>
                 <p className="warning">This entry is marked hidden and will not be shown again. Click "Show" to revert.</p>
                 <div className="button-block">
@@ -57,7 +56,7 @@ export function Visitor({visitor}: Props) {
                 </div>
             </div>
             :
-            <div className="visitor">
+            <div className="visitor basic-div">
                 <p><b>{visitor.ip}</b></p>
                 <p>{visitor.time}</p>
                 <p>{visitor.userAgent}</p>

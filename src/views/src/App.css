@@ -24,7 +24,11 @@ button {
   right: 10px;
   bottom: 10px
 }
-.visitor {
+/* .visitor {
+
+
+} */
+.basic-div {
   position: relative;
   color: #ffffffdd;
   background-color: #ffffff11;
@@ -34,5 +38,4 @@ button {
   padding: 20px;
   box-shadow: 6px 4px 4px #00000066;
   overflow: hidden;
-
 }

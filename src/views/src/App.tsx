@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import { Visitor, IVisitor } from './components/Visitor';
+import { Header } from './components/Header';
 
 import './App.css';
 
@@ -23,8 +24,8 @@ function App() {
     getData();
   },[])
   return (
-
       <div className="App">
+        <Header />
         {visitorData.map(visitor => (
           <Visitor visitor={visitor} key={visitor.id}/>
         ))}
