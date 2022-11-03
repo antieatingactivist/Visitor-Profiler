@@ -7,6 +7,7 @@ class Visitor extends Model {
     declare ip: string;
     declare data: object;
     declare hidden: boolean;
+    
 }
 
 Visitor.init(
@@ -26,7 +27,7 @@ Visitor.init(
         hidden: {
             type: DataTypes.BOOLEAN,
             defaultValue: false,
-        }
+        },
 
     },
     {

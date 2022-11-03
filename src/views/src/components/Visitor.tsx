@@ -13,7 +13,11 @@ export interface IVisitor {
     city: string,
     region: string,
     country: string,
-    flag: string
+    flag: string,
+    otherVisits: {
+        id: string,
+        time: string
+    }[],
 }
 const dataPath = process.env.NODE_ENV === "development" ? "http://localhost:3004" : "";
 

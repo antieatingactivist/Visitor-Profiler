@@ -91,6 +91,11 @@ app.get("/data", async function(req, res) {
     for (let visitor of visitors) {
 
         const visitorData = visitor.data;
+        const otherVisits = await Visitor.findAll({
+            where: { ip: visitor.ip },
+            attributes: ["id", "createdAt"],
+            // raw: true,
+        });
 
         let object = {
             hidden: visitor.hidden,
@@ -103,10 +108,11 @@ app.get("/data", async function(req, res) {
             region: visitorData['location']['region'],
             country: `${visitorData['location']['country_name']}`,
             flag: `${visitorData['location']['emoji_flag']}`,
-            otherVisits: await Visitor.findAll({
-                where: { ip: visitor.ip },
-                attributes: ["id", "createdAt"],
-                raw: true,
+            otherVisits: otherVisits.map( (visit) => {
+                return {
+                    id: visit.id,
+                    time: new Date(visit.createdAt).toLocaleString()
+                }
             })
         }
  
