@@ -79,7 +79,8 @@ export function Visitor({visitor}: Props) {
                 <p>{visitor.flag} {visitor.country}</p>
                 {showRaw && <pre>{JSON.stringify(rawData, null, 2)}</pre>}
                 <div className="button-block">
-                    <button onClick={() => getRaw(visitor.id)}>{showRaw ? <>Hide</> : <>Show</>} Raw Data</button>
+                    {(visitor.otherVisits?.length!>0) && <button onClick={() =>{}}>Other Visits</button>}
+                    <button onClick={() => getRaw(visitor.id)}>{showRaw ? <>Hide </> : <></>}Raw Data</button>
                     {hidden ? 
                         <button onClick={() => show(visitor.id)}>Show</button>
                         :
