@@ -103,6 +103,11 @@ app.get("/data", async function(req, res) {
             region: visitorData['location']['region'],
             country: `${visitorData['location']['country_name']}`,
             flag: `${visitorData['location']['emoji_flag']}`,
+            otherVisits: await Visitor.findAll({
+                where: { ip: visitor.ip },
+                attributes: ["id", "createdAt"],
+                raw: true,
+            })
         }
  
 
