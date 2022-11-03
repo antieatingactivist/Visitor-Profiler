@@ -33,16 +33,16 @@ function App() {
         { reversed ?
             <>{[...visitorData].reverse().map((visitor, index) => (
               <div className="container" key={index} style={{
-                marginTop: `${20 + visitor.otherVisits?.length! * 10}px`
+                marginTop: `${20 + visitor.otherVisits?.length! * 5}px`
               }}>
                 {visitor.otherVisits?.map((otherVisitor, index) =>
                   <div
                   key={index} 
                   className="absolute" style={{  
-                    top: `${-10 - (visitor.otherVisits?.length!-index)*5}px`,
-                    left: `${-10 - (visitor.otherVisits?.length!-index)*5}px`,
-                    right: `${10 + (visitor.otherVisits?.length!-index)*5}px`,
-                    bottom: `${10 + (visitor.otherVisits?.length!-index)*5}px`,
+                    top: `${-0 - (visitor.otherVisits?.length!-index)*5}px`,
+                    left: `${-0 - (visitor.otherVisits?.length!-index)*5}px`,
+                    right: `${0 + (visitor.otherVisits?.length!-index)*5}px`,
+                    bottom: `${0 + (visitor.otherVisits?.length!-index)*5}px`,
                   }}>
                     <Visitor visitor={visitor} />
                   </div>
@@ -61,10 +61,10 @@ function App() {
                   <div
                   key={index} 
                   className="absolute" style={{  
-                    top: `${-10 - (visitor.otherVisits?.length!-index)*5}px`,
-                    left: `${-10 - (visitor.otherVisits?.length!-index)*5}px`,
-                    right: `${10 + (visitor.otherVisits?.length!-index)*5}px`,
-                    bottom: `${10 + (visitor.otherVisits?.length!-index)*5}px`,
+                    top: `${-0 - (visitor.otherVisits?.length!-index)*5}px`,
+                    left: `${-0 - (visitor.otherVisits?.length!-index)*5}px`,
+                    right: `${0 + (visitor.otherVisits?.length!-index)*5}px`,
+                    bottom: `${0 + (visitor.otherVisits?.length!-index)*5}px`,
                   }}>
                     <Visitor visitor={visitor} />
                   </div>
