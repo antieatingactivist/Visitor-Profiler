@@ -21,14 +21,18 @@ app.set('trust proxy', true);
 
 
 app.get("/hit", async function(req, res) {
-    const ip: string = req.headers["x-forwarded-for"] as string;
-    // const ip = "11.0.0.0";
+    // const ip: string = req.headers["x-forwarded-for"] as string;
+    const ip = "11.0.0.0";
     
     if (ip && ip.split('.')[0] !== "10") {
         const location = await axios.get(`https://api.ipdata.co/${ip}?api-key=${API_KEY}`);
         const object = {...req.headers, location: {...location.data}}
 
-        await Visitor.create({data: object});
+        await Visitor.create({
+            data: object,
+            ip: ip,
+            
+        });
 
     }
 
@@ -91,8 +95,9 @@ app.get("/data", async function(req, res) {
         let object = {
             hidden: visitor.hidden,
             id: visitor.id,
-            ip: visitorData['x-forwarded-for'],
-            time: new Date(visitorData['x-start-time']).toLocaleString(),
+            ip: visitor.ip,
+            time: new Date(visitor.createdAt).toLocaleString(),
+            unixTime: new Date(visitor.createdAt).getTime(),
             userAgent: visitorData['user-agent'],
             city: visitorData['location']['city'],
             region: visitorData['location']['region'],

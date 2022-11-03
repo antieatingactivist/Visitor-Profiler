@@ -1,8 +1,10 @@
-import { Model, DataTypes, CreationOptional } from 'sequelize';
+import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/connection.mjs'
 
 class Visitor extends Model {
-    declare id: CreationOptional<number>;
+    declare id: number;
+    declare createdAt: string;
+    declare ip: string;
     declare data: object;
     declare hidden: boolean;
 }
@@ -18,6 +20,9 @@ Visitor.init(
         data: {
             type: DataTypes.JSON
         },
+        ip: {
+            type: DataTypes.STRING,
+        },
         hidden: {
             type: DataTypes.BOOLEAN,
             defaultValue: false,
@@ -26,7 +31,7 @@ Visitor.init(
     },
     {
         sequelize,
-        timestamps: false,
+        timestamps: true,
         freezeTableName: true,
         underscored: true,
         modelName: 'visitor',

@@ -8,6 +8,7 @@ export interface IVisitor {
     id: number;
     ip: string,
     time: string,
+    unixTime: string,
     userAgent: string,
     city: string,
     region: string,
