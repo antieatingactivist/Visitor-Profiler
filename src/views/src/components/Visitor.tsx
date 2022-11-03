@@ -4,8 +4,8 @@ type Props = {
     visitor: IVisitor;
 }
 export interface IVisitor {
-    hidden: boolean;
-    id: number;
+    hidden: boolean,
+    id: number,
     ip: string,
     time: string,
     unixTime: string,
