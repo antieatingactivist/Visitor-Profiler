@@ -42,7 +42,7 @@ button {
 .basic-div {
   position: relative;
   
-  background-color: #33333366;
+  background-color: #333333aa;
   border: 1px solid #000000;
   border-radius: 5px;
   
@@ -58,17 +58,24 @@ button {
 
 .absolute {
   position: absolute;
-  /* top: -10px;
-  left: -10px;
-  right: 10px;
-  bottom: 10px; */
-  background-color: #222222dd;
-  z-index: -10;
+  background-color: #000000dd;
+  /* z-index: -10; */
   color: #ffffff44;
-  
+  border-radius: 5px;
+  cursor: pointer;
+}
+.absolute:hover {
+  background-color: #333333dd;
 
+}
+.absolute:active {
+  z-index: 10;
+  left: 0 !important;
+  right: 0 !important;
 }
 .container {
   position: relative;
   margin: 20px;
+  height: 100%;
+  
 }
