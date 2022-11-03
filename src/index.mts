@@ -5,6 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import axios from 'axios';
 import { Visitor } from './models/index.mjs';
+import { Op } from 'sequelize';
 
 
 dotenv.config();
@@ -92,7 +93,13 @@ app.get("/data", async function(req, res) {
 
         const visitorData = visitor.data;
         const otherVisits = await Visitor.findAll({
-            where: { ip: visitor.ip },
+            where: { 
+                ip: visitor.ip,
+                id: {
+                    [Op.not]: visitor.id
+                }
+
+            },
             attributes: ["id", "createdAt"],
             // raw: true,
         });
