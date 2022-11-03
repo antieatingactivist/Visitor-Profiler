@@ -4,18 +4,18 @@ type Props = {
     visitor: IVisitor;
 }
 export interface IVisitor {
-    hidden: boolean,
+    hidden?: boolean,
     id: number,
-    ip: string,
+    ip?: string,
     time: string,
-    unixTime: string,
-    userAgent: string,
-    city: string,
-    region: string,
-    country: string,
-    flag: string,
-    otherVisits: {
-        id: string,
+    unixTime?: string,
+    userAgent?: string,
+    city?: string,
+    region?: string,
+    country?: string,
+    flag?: string,
+    otherVisits?: {
+        id: number,
         time: string
     }[],
 }
@@ -54,13 +54,13 @@ export function Visitor({visitor}: Props) {
         setCollapsed(false);
         setHidden(false);
     }
-    const classString = visitor.hidden ? "visitor basic-div hidden" : "visitor basic-div";
+    const classString = visitor.hidden ? "basic-div visitor hidden" : " basic-div visitor";
 
     return (
         <>
         {
             collapsed ?
-            <div className="visitor basic-div hidden">
+            <div className="basic-div hidden">
                 
                 <p><b>{visitor.ip}</b></p>
                 <p className="warning">This entry is marked hidden and will not be shown again. Click "Show" to revert.</p>
@@ -69,6 +69,7 @@ export function Visitor({visitor}: Props) {
                 </div>
             </div>
             :
+
             <div className={classString}>
                 <p><b>{visitor.ip}</b></p>
                 <p>{visitor.time}</p>
@@ -90,6 +91,7 @@ export function Visitor({visitor}: Props) {
                     {visitor.flag}
                 </div>
             </div>
+            
         }
         </>
     );

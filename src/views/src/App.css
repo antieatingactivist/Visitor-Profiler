@@ -1,5 +1,6 @@
 body {
   background-color: #282c34;
+  color: #ffffffdd;
 
 }
 p {
@@ -35,22 +36,39 @@ button {
   right: 10px;
   bottom: 10px
 }
-/* .visitor {
-
-
-} */
+.visitor {
+  position: absolute;
+}
 .basic-div {
   position: relative;
-  color: #ffffffdd;
-  background-color: #ffffff11;
+  
+  background-color: #33333366;
   border: 1px solid #000000;
   border-radius: 5px;
-  margin: 20px;
+  
   padding: 20px;
   box-shadow: 6px 4px 4px #00000066;
   overflow: hidden;
+  backdrop-filter: blur(10px);
 }
 
 .hidden {
   opacity: .5;
+}
+
+.absolute {
+  position: absolute;
+  /* top: -10px;
+  left: -10px;
+  right: 10px;
+  bottom: 10px; */
+  background-color: #222222dd;
+  z-index: -10;
+  color: #ffffff44;
+  
+
+}
+.container {
+  position: relative;
+  margin: 20px;
 }
