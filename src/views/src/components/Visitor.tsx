@@ -3,6 +3,7 @@ import { useState } from 'react';
 type Props = {
     visitor: IVisitor;
     noButtons?: boolean;
+    setShowOtherVisits?: Function;
 }
 export interface IVisitor {
     hidden?: boolean,
@@ -24,7 +25,7 @@ const dataPath = process.env.NODE_ENV === "development" ? "http://localhost:3004
 
 
 
-export function Visitor({visitor, noButtons}: Props) {
+export function Visitor({visitor, noButtons, setShowOtherVisits}: Props) {
     const [rawData, setRawData] = useState();
     const [showRaw, setShowRaw] = useState(false);
     const [collapsed, setCollapsed] = useState(false);
@@ -80,7 +81,7 @@ export function Visitor({visitor, noButtons}: Props) {
                 <p>{visitor.flag} {visitor.country}</p>
                 {showRaw && <pre>{JSON.stringify(rawData, null, 2)}</pre>}
                 {!noButtons && <div className="button-block">
-                    {(visitor.otherVisits?.length!>0) && <button onClick={() =>{}}>Other Visits</button>}
+                    {(visitor.otherVisits?.length!>0) && <button onClick={() => setShowOtherVisits!(true)}>Other Visits</button>}
                     <button onClick={() => getRaw(visitor.id)}>{showRaw ? <>Hide </> : <></>}Raw Data</button>
                     {hidden ? 
                         <button onClick={() => show(visitor.id)}>Show</button>

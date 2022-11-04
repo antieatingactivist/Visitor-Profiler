@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import { Visitor, IVisitor } from './components/Visitor';
+import { IVisitor } from './components/Visitor';
 import { Header } from './components/Header';
 import { VisitorBlock } from './components/VisitorBlock'
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -11,7 +11,7 @@ const dataPath = process.env.NODE_ENV === "development" ? "http://localhost:3004
 
 function App() {
   const [visitorData, setVisitorData] = useState<IVisitor[]>([]);
-  const [reversed, setReversed] = useState(true);
+  const [reversed, setReversed] = useState(false);
 
   const getData = async (includeHidden?: boolean) => {
     const queryString = includeHidden ? "?showHidden=true" : "";
@@ -20,22 +20,21 @@ function App() {
     setVisitorData(data);
   }
 
-
-
-
   useEffect(() => {
-
     getData();
   },[])
   return (
       <div className="App">
-        <Header getData={getData} reversed={reversed} setReversed={setReversed}/>
-        
-        { reversed ?
-            <VisitorBlock visitorData={[...visitorData].reverse()}/>
-        :
-            <VisitorBlock visitorData={visitorData}/>
-        }
+        <Header getData={getData} reversed={reversed} setReversed={setReversed}/>  
+          { reversed ?
+          <>{[...visitorData].reverse().map((visitor, index) => (
+            <VisitorBlock visitor={visitor} index={index} key={index}/>
+          ))}</>
+          :   
+          <>{visitorData.map((visitor, index) => (
+            <VisitorBlock visitor={visitor} index={index} key={index}/>
+          ))}</>
+          }
       </div>
 
   );
