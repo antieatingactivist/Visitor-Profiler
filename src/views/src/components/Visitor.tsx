@@ -88,16 +88,16 @@ export function Visitor({visitor, noButtons, showOtherVisits, setShowOtherVisits
                         <button onClick={() => setShowOtherVisits!(false)}>Hide Other Visits</button>
                         :
                         <button onClick={() => setShowOtherVisits!(true)}>Other Visits</button>
-                    }
-
+                    }</>
+                }
 
                     <button onClick={() => getRaw(visitor.id)}>{showRaw ? <>Hide </> : <></>}Raw Data</button>
                     {hidden ? 
                         <button onClick={() => show(visitor.id)}>Show</button>
                         :
                         <button onClick={() => hide(visitor.id)}>Hide</button>
-                    }</>
-                }
+                    }
+                
                 </div>}
                 <div className="flag">
                     
