@@ -91,7 +91,7 @@ app.get("/data", async function(req, res) {
 
     for (let visitor of visitors) {
 
-        const visitorData = visitor.data;
+        // const visitorData = visitor.data;
         const otherVisits = await Visitor.findAll({
             where: { 
                 ip: visitor.ip,
@@ -101,27 +101,10 @@ app.get("/data", async function(req, res) {
 
             },
             attributes: ["id", "createdAt"],
-            // raw: true,
+            raw: true,
         });
 
-        let object = {
-            hidden: visitor.hidden,
-            id: visitor.id,
-            ip: visitor.ip,
-            time: new Date(visitor.createdAt).toLocaleString(),
-            unixTime: new Date(visitor.createdAt).getTime(),
-            userAgent: visitorData['user-agent'],
-            city: visitorData['location']['city'],
-            region: visitorData['location']['region'],
-            country: `${visitorData['location']['country_name']}`,
-            flag: `${visitorData['location']['emoji_flag']}`,
-            otherVisits: otherVisits.map( (visit) => {
-                return {
-                    id: visit.id,
-                    time: new Date(visit.createdAt).toLocaleString()
-                }
-            })
-        }
+        const object = parseData(visitor, otherVisits);
  
 
         if (!(visitor['from']?.includes('bot') || object.userAgent?.includes('Expanse'))) {
@@ -132,7 +115,28 @@ app.get("/data", async function(req, res) {
     res.json(responseData);  
 });
 
-
+function parseData(visitor: Visitor, otherVisits?: Visitor[]) {
+    return {
+        hidden: visitor.hidden,
+        id: visitor.id,
+        ip: visitor.ip,
+        time: new Date(visitor.createdAt).toLocaleString(),
+        unixTime: new Date(visitor.createdAt).getTime(),
+        userAgent: visitor.data['user-agent'],
+        city: visitor.data['location']['city'],
+        region: visitor.data['location']['region'],
+        country: `${visitor.data['location']['country_name']}`,
+        flag: `${visitor.data['location']['emoji_flag']}`,
+        otherVisits: otherVisits?.map( (visit: Visitor ) => {
+            return {
+                // ...visit,
+                ...parseData(visit)
+                // id: visit.id,
+                // time: new Date(visit.createdAt).toLocaleString()
+            }
+        })
+    }
+}
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}!`);
 });
