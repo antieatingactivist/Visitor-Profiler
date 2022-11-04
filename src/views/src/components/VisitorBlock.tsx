@@ -18,7 +18,7 @@ export function VisitorBlock({visitor, index}: Props) {
               }}>
                 
                 <div style={{position: "relative", zIndex: 1}}>
-                    <Visitor visitor={visitor} setShowOtherVisits={setShowOtherVisits}/>
+                    <Visitor visitor={visitor} showOtherVisits={showOtherVisits} setShowOtherVisits={setShowOtherVisits}/>
                 </div>
                     { !showOtherVisits ?
                         <>{visitor.otherVisits?.map((otherVisitor, index) =>
