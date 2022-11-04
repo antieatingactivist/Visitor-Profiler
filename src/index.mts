@@ -100,7 +100,7 @@ app.get("/data", async function(req, res) {
                 }
 
             },
-            attributes: ["id", "createdAt"],
+            // attributes: ["id", "createdAt"],
             raw: true,
         });
 
