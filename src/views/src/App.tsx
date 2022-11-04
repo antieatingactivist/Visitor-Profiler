@@ -40,8 +40,8 @@ function App() {
                   key={index} 
                   className="absolute" style={{  
                     top: `${-0 - (visitor.otherVisits?.length!-index)*5}px`,
-                    left: `${-0 - (visitor.otherVisits?.length!-index)*5}px`,
-                    right: `${0 + (visitor.otherVisits?.length!-index)*5}px`,
+                    left: `${-0 - (visitor.otherVisits?.length!-index)*2}px`,
+                    right: `${0 + (visitor.otherVisits?.length!-index)*2}px`,
                     bottom: `${0 + (visitor.otherVisits?.length!-index)*5}px`,
                   }}>
                     <Visitor visitor={visitor} />
@@ -62,8 +62,8 @@ function App() {
                   key={index} 
                   className="absolute" style={{  
                     top: `${-0 - (visitor.otherVisits?.length!-index)*5}px`,
-                    left: `${-0 - (visitor.otherVisits?.length!-index)*5}px`,
-                    right: `${0 + (visitor.otherVisits?.length!-index)*5}px`,
+                    left: `${-0 - (visitor.otherVisits?.length!-index)*2}px`,
+                    right: `${0 + (visitor.otherVisits?.length!-index)*2}px`,
                     bottom: `${0 + (visitor.otherVisits?.length!-index)*5}px`,
                   }}>
                     <Visitor visitor={visitor} />
