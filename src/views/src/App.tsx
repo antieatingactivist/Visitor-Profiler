@@ -44,7 +44,7 @@ function App() {
                     right: `${0 + (visitor.otherVisits?.length!-index)*2}px`,
                     bottom: `${0 + (visitor.otherVisits?.length!-index)*5}px`,
                   }}>
-                    <Visitor visitor={otherVisitor} />
+                    <Visitor visitor={otherVisitor} noButtons={true}/>
                   </div>
                 )}
                 
