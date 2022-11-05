@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import ButtonBlock from './ButtonBlock';
 
 type Props = {
     visitor: IVisitor;
@@ -85,27 +86,9 @@ export function Visitor({visitor, noButtons, showOtherVisits, setShowOtherVisits
             <p>{visitor.flag} {visitor.country}</p>
             {warning && <p className="warning">This entry is marked hidden and will not be shown again. Click "Show" to revert.</p>}
             {showRaw && <pre>{JSON.stringify(rawData, null, 2)}</pre>}
-            {!noButtons && <div className="button-block">
-
-                { visitor.otherVisits?.length!>0 &&
-                    <>{showOtherVisits ? 
-                        <button onClick={() => setShowOtherVisits!(false)}>Hide Other Visits</button>
-                        :
-                        <button onClick={() => setShowOtherVisits!(true)}>Other Visits</button>
-                    }</>
-                }
-
-                {!hidden && <button onClick={() => getRaw(visitor.id)}>{showRaw ? <>Hide </> : <></>}Raw Data</button>}
-
-                
-                {hidden ? 
-                
-                    <button onClick={() => show(visitor.id)}>Show</button>
-                    :
-                    <button onClick={() => hide(visitor.id)}>Hide</button>
-                }
-            
-            </div>}
+            {!noButtons && 
+                <ButtonBlock hidden={hidden} showRaw={showRaw} getRaw={getRaw} visitor={visitor} showOtherVisits={showOtherVisits} setShowOtherVisits={setShowOtherVisits} show={show} hide={hide}/>
+            }
             <div className="flag">
                 
                 {visitor.flag}
