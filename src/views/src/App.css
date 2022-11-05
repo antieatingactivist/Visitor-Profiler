@@ -2,9 +2,11 @@ body {
   background-color: #282c34;
   color: #ffffffdd;
 }
+
 p {
   margin : 2px;
 }
+
 button {
   transition: background-color 0.5s;
   position: relative;
@@ -17,14 +19,17 @@ button {
   border-radius: 3px;
   cursor: pointer; 
 }
+
 button:hover {
   background-color: #ffffff11;
 }
+
 button:active {
   left: 2px;
   top: 1px;
   box-shadow: none;
 }
+
 .flag {
   position: absolute;
   right: -10%;
@@ -33,28 +38,28 @@ button:active {
   font-size: 30em;
   opacity: .1;
   filter: blur(10px);
-
 }
 
 .warning {
   font-size: .8em;
   color: #ff4444dd;
 }
+
 .button-block {
   position: absolute;
   right: 10px;
   bottom: 10px
 }
+
 .visitor {
   position: absolute;
 }
+
 .basic-div {
   position: relative;
-  
   background-color: #333333cc;
   border: 1px solid #000000;
   border-radius: 5px;
-  
   padding: 20px;
   box-shadow: 6px 4px 4px #00000066;
   overflow: hidden;
@@ -69,7 +74,6 @@ button:active {
   transition: all 0.2s;
   position: absolute;
   background-color: #000000dd;
-  /* z-index: -10; */
   color: #ffffff44;
   border-radius: 5px;
   cursor: pointer;
@@ -79,18 +83,19 @@ button:active {
   right: 0;
   margin-top: 0;
 }
+
 .absolute:hover {
   background-color: #333333dd;
-
 }
+
 .absolute:active {
   z-index: 10;
   left: 0 !important;
   right: 0 !important;
 }
+
 .container {
   position: relative;
   margin: 20px;
   height: 100%;
-  
 }
