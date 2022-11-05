@@ -24,7 +24,7 @@ export default function ButtonBlock({
 
     return (
         <div className="button-block">
-            { (visitor.otherVisits?.length ?? 0) && //might be problematic
+            { (visitor.otherVisits?.length ?? 0) &&
                     <>{showOtherVisits ? 
                         <button onClick={setShowOtherVisits && (() => setShowOtherVisits(false))}>Hide Other Visits</button>
                         :
