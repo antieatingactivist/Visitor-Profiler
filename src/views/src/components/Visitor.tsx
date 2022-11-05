@@ -87,7 +87,7 @@ export function Visitor({visitor, noButtons, showOtherVisits, setShowOtherVisits
             </div>
             :
 
-            <div className={hidden ? "basic-div visitor hidden" : " basic-div visitor"}>
+            <div className={hidden && !noButtons? "basic-div visitor hidden" : " basic-div visitor"}>
                 {/* <p>{hidden ? <>hidden</> : <>not hidden</>}</p>
                 <p>{visitor.hidden ? <>hidden</> : <>not hidden</>}</p> */}
                 <p><b>{visitor.ip}</b></p>

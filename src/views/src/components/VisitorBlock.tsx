@@ -13,7 +13,7 @@ export function VisitorBlock({visitor, index}: Props) {
         
             
               <div className="container" key={index} style={{
-                marginTop: `${20 + visitor.otherVisits?.length! * 5}px`,
+                marginTop: `${20 + visitor.otherVisits?.length! * 5 * +!visitor.hidden * +!showOtherVisits }px`,
                 // marginBottom: `${20 + visitor.otherVisits?.length! * 5}px`
               }}>
                 
@@ -21,20 +21,25 @@ export function VisitorBlock({visitor, index}: Props) {
                     <Visitor visitor={visitor} showOtherVisits={showOtherVisits} setShowOtherVisits={setShowOtherVisits}/>
                 </div>
                     { !showOtherVisits ?
-                        <>{visitor.otherVisits?.map((otherVisitor, index) =>
-                            
-                            <div key={index} 
-                            className="absolute" style={{  
-                                top: `${-0 - (visitor.otherVisits?.length!-index)*5}px`,
-                                left: `${-0 - (visitor.otherVisits?.length!-index)*2}px`,
-                                right: `${0 + (visitor.otherVisits?.length!-index)*2}px`,
-                                bottom: `${0 + (visitor.otherVisits?.length!-index)*5}px`,
+                        <>{ !visitor.hidden &&
+
+                            <>
+                            {visitor.otherVisits?.map((otherVisitor, index) =>
                                 
-                            }}>
-                                <Visitor visitor={otherVisitor} noButtons={true}/>
-                                
-                            </div>
-                        )}</>
+                                <div key={index} 
+                                className="absolute" style={{  
+                                    top: `${-0 - (visitor.otherVisits?.length!-index)*5}px`,
+                                    left: `${-0 - (visitor.otherVisits?.length!-index)*2}px`,
+                                    right: `${0 + (visitor.otherVisits?.length!-index)*2}px`,
+                                    bottom: `${0 + (visitor.otherVisits?.length!-index)*5}px`,
+                                    
+                                }}>
+                                    <Visitor visitor={otherVisitor} noButtons={true}/>
+                                    
+                                </div>
+                            )}
+                            </>
+                        }</>
                         :
                         <>{visitor.otherVisits?.map((otherVisitor, index) =>
                             <div key={index} 
