@@ -26,14 +26,14 @@ function App() {
   return (
       <div className="App">
         <Header getData={getData} reversed={reversed} setReversed={setReversed}/>  
-          { reversed ?
-          <>{[...visitorData].reverse().map((visitor, index) => (
-            <VisitorBlock visitor={visitor} index={index} key={index}/>
-          ))}</>
-          :   
-          <>{visitorData.map((visitor, index) => (
-            <VisitorBlock visitor={visitor} index={index} key={index}/>
-          ))}</>
+          { reversed ? 
+            <>{visitorData.map((visitor, index) => (
+              <VisitorBlock visitor={visitor} index={index} key={index}/>
+            ))}</>
+            :
+            <>{[...visitorData].reverse().map((visitor, index) => (
+              <VisitorBlock visitor={visitor} index={index} key={index}/>
+            ))}</>
           }
       </div>
 
