@@ -37,8 +37,8 @@ const dataPath = process.env.NODE_ENV === "development" ? "http://localhost:3004
 export function Visitor({visitor, noButtons, showOtherVisits, setShowOtherVisits}: Props) {
     const [rawData, setRawData] = useState();
     const [showRaw, setShowRaw] = useState(false);
-    const [collapsed, setCollapsed] = useState(false);
-    const [hidden, setHidden] = useState(false);
+    const [warning, setwarning] = useState(false);
+    const [hidden, setHidden] = useState(visitor.hidden);
     
     const getRaw = async (id: number) => {
         const show = !showRaw;
@@ -55,7 +55,7 @@ export function Visitor({visitor, noButtons, showOtherVisits, setShowOtherVisits
         await fetch(`${dataPath}/hide/${id}`, {
             method: 'PUT'
         });
-        setCollapsed(true);
+        setwarning(true);
         setShowRaw(false);
         setHidden(true);
     }
@@ -63,7 +63,7 @@ export function Visitor({visitor, noButtons, showOtherVisits, setShowOtherVisits
         await fetch(`${dataPath}/show/${id}`, {
             method: 'PUT'
         });
-        setCollapsed(false);
+        setwarning(false);
         setHidden(false);
     }
     useEffect(() => {
@@ -74,57 +74,44 @@ export function Visitor({visitor, noButtons, showOtherVisits, setShowOtherVisits
     // const classString = visitor.hidden ? "basic-div visitor hidden" : " basic-div visitor";
 
     return (
-        <>
-        { 
-            collapsed ?
-            <div className="basic-div hidden">
-                
-                <p><b>{visitor.ip}</b></p>
-                <p className="warning">This entry is marked hidden and will not be shown again. Click "Show" to revert.</p>
-                <div className="button-block">
-                    <button onClick={() => show(visitor.id)}>Show</button>
-                </div>
-            </div>
-            :
+        
+        <div className={hidden && !noButtons? "basic-div visitor hidden" : " basic-div visitor"}>
+            {/* <p>{hidden ? <>hidden</> : <>not hidden</>}</p>
+            <p>{visitor.hidden ? <>hidden</> : <>not hidden</>}</p> */}
+            <p><b>{visitor.ip}</b></p>
+            <p>{visitor.time}</p>
+            <p>{visitor.userAgent}</p>
+            <p>{visitor.city}</p>
+            <p>{visitor.region}</p>
+            <p>{visitor.flag} {visitor.country}</p>
+            {warning && <p className="warning">This entry is marked hidden and will not be shown again. Click "Show" to revert.</p>}
+            {showRaw && <pre>{JSON.stringify(rawData, null, 2)}</pre>}
+            {!noButtons && <div className="button-block">
 
-            <div className={hidden && !noButtons? "basic-div visitor hidden" : " basic-div visitor"}>
-                {/* <p>{hidden ? <>hidden</> : <>not hidden</>}</p>
-                <p>{visitor.hidden ? <>hidden</> : <>not hidden</>}</p> */}
-                <p><b>{visitor.ip}</b></p>
-                <p>{visitor.time}</p>
-                <p>{visitor.userAgent}</p>
-                <p>{visitor.city}</p>
-                <p>{visitor.region}</p>
-                <p>{visitor.flag} {visitor.country}</p>
-                {showRaw && <pre>{JSON.stringify(rawData, null, 2)}</pre>}
-                {!noButtons && <div className="button-block">
-
-                    { visitor.otherVisits?.length!>0 &&
-                        <>{showOtherVisits ? 
-                            <button onClick={() => setShowOtherVisits!(false)}>Hide Other Visits</button>
-                            :
-                            <button onClick={() => setShowOtherVisits!(true)}>Other Visits</button>
-                        }</>
-                    }
-
-                    {!hidden && <button onClick={() => getRaw(visitor.id)}>{showRaw ? <>Hide </> : <></>}Raw Data</button>}
-
-                    
-                    {hidden ? 
-                    
-                        <button onClick={() => show(visitor.id)}>Show</button>
+                { visitor.otherVisits?.length!>0 &&
+                    <>{showOtherVisits ? 
+                        <button onClick={() => setShowOtherVisits!(false)}>Hide Other Visits</button>
                         :
-                        <button onClick={() => hide(visitor.id)}>Hide</button>
-                    }
+                        <button onClick={() => setShowOtherVisits!(true)}>Other Visits</button>
+                    }</>
+                }
+
+                {!hidden && <button onClick={() => getRaw(visitor.id)}>{showRaw ? <>Hide </> : <></>}Raw Data</button>}
+
                 
-                </div>}
-                <div className="flag">
-                    
-                    {visitor.flag}
-                </div>
-            </div>
+                {hidden ? 
+                
+                    <button onClick={() => show(visitor.id)}>Show</button>
+                    :
+                    <button onClick={() => hide(visitor.id)}>Hide</button>
+                }
             
-        }
-        </>
+            </div>}
+            <div className="flag">
+                
+                {visitor.flag}
+            </div>
+        </div>
+            
     );
 }
