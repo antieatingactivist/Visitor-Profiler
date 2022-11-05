@@ -68,7 +68,6 @@ export function Visitor({visitor, noButtons, showOtherVisits, setShowOtherVisits
     }
     useEffect(() => {
         setHidden(visitor.hidden);
-        console.log("hit")
     },[visitor.hidden])
     
     // const classString = visitor.hidden ? "basic-div visitor hidden" : " basic-div visitor";

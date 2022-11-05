@@ -2,19 +2,17 @@ import { useState } from 'react';
 import { Visitor, IVisitor } from './Visitor';
 type Props = {
     visitor: IVisitor;
-    index: number;
 }
 
 
-export function VisitorBlock({visitor, index}: Props) {
+export function VisitorBlock({visitor}: Props) {
     const [showOtherVisits, setShowOtherVisits] = useState(false);
 
     return (
         
             
-              <div className="container" key={index} style={{
-                marginTop: `${20 + visitor.otherVisits?.length! * 5 * +!visitor.hidden * +!showOtherVisits }px`,
-                // marginBottom: `${20 + visitor.otherVisits?.length! * 5}px`
+              <div className="container" style={{
+                marginTop: `${20 + visitor.otherVisits?.length! * 5 * +!visitor.hidden * +!showOtherVisits }px`
               }}>
                 
                 <div style={{position: "relative", zIndex: 1}}>

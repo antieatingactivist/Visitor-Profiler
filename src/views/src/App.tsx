@@ -37,11 +37,11 @@ function App() {
         <Header getData={getData} reversed={reversed} setReversed={setReversed}/>  
           { show && <>{ reversed ? 
             <>{visitorData.map((visitor, index) => (
-              <VisitorBlock visitor={visitor} index={index} key={index}/>
+              <VisitorBlock visitor={visitor} key={index}/>
             ))}</>
             :
             <>{[...visitorData].reverse().map((visitor, index) => (
-              <VisitorBlock visitor={visitor} index={index} key={index}/>
+              <VisitorBlock visitor={visitor} key={index}/>
             ))}</>
           }</>}
       </div>
