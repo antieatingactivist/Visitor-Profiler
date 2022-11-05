@@ -1,6 +1,6 @@
-import sequelize from '../config/connection.mjs';
-import Visitor from '../models/Visitor.mjs';
-import visitorData from './visitor-seeds.json' assert { type: 'json' };
+import sequelize from "../config/connection.mjs";
+import Visitor from "../models/Visitor.mjs";
+import visitorData from "./visitor-seeds.json" assert { type: "json" };
 
 
 const seedDatabase = async () => {
@@ -8,11 +8,11 @@ const seedDatabase = async () => {
 
     await Visitor.bulkCreate(visitorData, {
         individualHooks: true,
-        returning: true,
+        returning: true
     });
 
 
     process.exit(0);
-}
+};
 
 seedDatabase();
