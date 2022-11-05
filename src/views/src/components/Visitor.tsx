@@ -7,7 +7,7 @@ type Props = {
     setShowOtherVisits?: Function;
 }
 export interface IVisitor {
-    hidden?: boolean,
+    hidden: boolean,
     id: number,
     ip?: string,
     time: string,
@@ -18,8 +18,16 @@ export interface IVisitor {
     country?: string,
     flag?: string,
     otherVisits?: {
+        hidden: boolean,
         id: number,
-        time: string
+        ip?: string,
+        time: string,
+        unixTime?: string,
+        userAgent?: string,
+        city?: string,
+        region?: string,
+        country?: string,
+        flag?: string,
     }[],
 }
 const dataPath = process.env.NODE_ENV === "development" ? "http://localhost:3004" : "";
@@ -30,8 +38,8 @@ export function Visitor({visitor, noButtons, showOtherVisits, setShowOtherVisits
     const [rawData, setRawData] = useState();
     const [showRaw, setShowRaw] = useState(false);
     const [collapsed, setCollapsed] = useState(false);
-    const [hidden, setHidden] = useState(visitor.hidden);
-
+    const [hidden, setHidden] = useState(false);
+    
     const getRaw = async (id: number) => {
         const show = !showRaw;
         if (show) {
@@ -58,12 +66,16 @@ export function Visitor({visitor, noButtons, showOtherVisits, setShowOtherVisits
         setCollapsed(false);
         setHidden(false);
     }
+    useEffect(() => {
+        setHidden(visitor.hidden);
+        console.log("hit")
+    },[visitor.hidden])
     
     // const classString = visitor.hidden ? "basic-div visitor hidden" : " basic-div visitor";
 
     return (
         <>
-        {
+        { 
             collapsed ?
             <div className="basic-div hidden">
                 
@@ -75,8 +87,9 @@ export function Visitor({visitor, noButtons, showOtherVisits, setShowOtherVisits
             </div>
             :
 
-            <div className={visitor.hidden ? "basic-div visitor hidden" : " basic-div visitor"}>
-                <p>{visitor.hidden}</p>
+            <div className={hidden ? "basic-div visitor hidden" : " basic-div visitor"}>
+                {/* <p>{hidden ? <>hidden</> : <>not hidden</>}</p>
+                <p>{visitor.hidden ? <>hidden</> : <>not hidden</>}</p> */}
                 <p><b>{visitor.ip}</b></p>
                 <p>{visitor.time}</p>
                 <p>{visitor.userAgent}</p>
@@ -94,10 +107,10 @@ export function Visitor({visitor, noButtons, showOtherVisits, setShowOtherVisits
                         }</>
                     }
 
-                    {!visitor.hidden && <button onClick={() => getRaw(visitor.id)}>{showRaw ? <>Hide </> : <></>}Raw Data</button>}
+                    {!hidden && <button onClick={() => getRaw(visitor.id)}>{showRaw ? <>Hide </> : <></>}Raw Data</button>}
 
                     
-                    {visitor.hidden ? 
+                    {hidden ? 
                     
                         <button onClick={() => show(visitor.id)}>Show</button>
                         :
