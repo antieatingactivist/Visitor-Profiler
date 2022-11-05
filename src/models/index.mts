@@ -1,3 +1,3 @@
-import Visitor from './Visitor.mjs'
+import Visitor from "./Visitor.mjs";
 
-export { Visitor }
+export { Visitor };
