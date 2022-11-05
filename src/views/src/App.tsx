@@ -12,8 +12,10 @@ const dataPath = process.env.NODE_ENV === "development" ? "http://localhost:3004
 function App() {
   const [visitorData, setVisitorData] = useState<IVisitor[]>([]);
   const [reversed, setReversed] = useState(false);
+  const [show, setShow] = useState(true);
 
   const getData = async (includeHidden?: boolean) => {
+
     const queryString = includeHidden ? "?showHidden=true" : "";
     const response = await fetch(`${dataPath}/data${queryString}`);
     const data = await response.json();
@@ -21,12 +23,19 @@ function App() {
   }
 
   useEffect(() => {
+    setShow(false);
+    setTimeout(() => 
+      setShow(true), 20
+    )
+  },[reversed])
+
+  useEffect(() => {
     getData();
   },[])
   return (
       <div className="App">
         <Header getData={getData} reversed={reversed} setReversed={setReversed}/>  
-          { reversed ? 
+          { show && <>{ reversed ? 
             <>{visitorData.map((visitor, index) => (
               <VisitorBlock visitor={visitor} index={index} key={index}/>
             ))}</>
@@ -34,7 +43,7 @@ function App() {
             <>{[...visitorData].reverse().map((visitor, index) => (
               <VisitorBlock visitor={visitor} index={index} key={index}/>
             ))}</>
-          }
+          }</>}
       </div>
 
   );
