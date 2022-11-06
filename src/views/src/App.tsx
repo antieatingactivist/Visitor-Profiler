@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import { IVisitor } from "./components/Visitor";
 import { Header } from "./components/Header";
+import { Welcome } from "./components/Welcome";
 import { VisitorBlock } from "./components/VisitorBlock";
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -38,6 +39,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<><Outlet /></>}>
                     <Route index element={<div><Link to="/stats">root</Link></div>} />
+                    <Route path="welcome" element={<Welcome />} />
                     <Route path="stats" element={
                         <>
                             <Header getData={getData} reversed={reversed} setReversed={setReversed}/>  
