@@ -38,7 +38,7 @@ function App() {
         <div>
             <Routes>
                 <Route path="/" element={<><Outlet /></>}>
-                    <Route index element={<div><Link to="/stats">root</Link></div>} />
+                    <Route index element={<div></div>} />
                     <Route path="welcome" element={<Welcome />} />
                     <Route path="stats" element={
                         <>
