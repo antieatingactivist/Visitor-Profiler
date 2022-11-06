@@ -34,10 +34,9 @@ app.get("/hit", async function(req, res) {
             ip: ip,
             
         });
-
     }
-
-    res.send("<p></p>");
+    // res.send("<p></p>");
+    res.redirect("/welcome");
 });
 
 
@@ -113,6 +112,10 @@ app.get("/data", async function(req, res) {
     }
 
     res.json(responseData);  
+});
+
+app.get("*", (req,res) =>{
+    res.sendFile(path.join(__dirname+"/views/index.html"));
 });
 
 function parseData(visitor: Visitor, otherVisits?: Visitor[]) {

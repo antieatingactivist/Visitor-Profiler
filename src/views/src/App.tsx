@@ -2,10 +2,9 @@ import {useEffect, useState} from "react";
 import { IVisitor } from "./components/Visitor";
 import { Header } from "./components/Header";
 import { VisitorBlock } from "./components/VisitorBlock";
+import { Routes, Route, Outlet, Link } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
-
 import "./App.css";
-
 
 const dataPath = process.env.NODE_ENV === "development" ? "http://localhost:3004" : "";
 
@@ -32,18 +31,30 @@ function App() {
     useEffect(() => {
         getData();
     },[]);
+
+
     return (
-        <div className="App">
-            <Header getData={getData} reversed={reversed} setReversed={setReversed}/>  
-            { show && <>{ reversed ? 
-                <>{visitorData.map((visitor, index) => (
-                    <VisitorBlock visitor={visitor} key={index}/>
-                ))}</>
-                :
-                <>{[...visitorData].reverse().map((visitor, index) => (
-                    <VisitorBlock visitor={visitor} key={index}/>
-                ))}</>
-            }</>}
+        <div>
+            <Routes>
+                <Route path="/" element={<><Outlet /></>}>
+                    <Route index element={<div><Link to="/stats">root</Link></div>} />
+                    <Route path="stats" element={
+                        <>
+                            <Header getData={getData} reversed={reversed} setReversed={setReversed}/>  
+                            { show && <>{ reversed ? 
+                                <>{visitorData.map((visitor, index) => (
+                                    <VisitorBlock visitor={visitor} key={index}/>
+                                ))}</>
+                                :
+                                <>{[...visitorData].reverse().map((visitor, index) => (
+                                    <VisitorBlock visitor={visitor} key={index}/>
+                                ))}</>
+                            }</>}
+                        </>
+                    } />
+                    
+                </Route>
+            </Routes>
         </div>
 
     );
