@@ -3,7 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 
 export function Welcome() {
 
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
     
 
     return (

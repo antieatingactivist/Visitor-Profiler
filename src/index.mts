@@ -35,10 +35,11 @@ app.get("/hit", async function(req, res) {
             ip: ip,  
         });
     }
-    // res.send("<p></p>");
-    console.log(ip);
-    res.redirect(`/welcome?ip=${ip}`);
-    // res.send("<div class='basic-div container' style='text-align: center;'>Welcome</div>");
+    if (process.env.DEMO_MODE === "true") {
+        res.redirect(`/welcome?ip=${ip}`);
+    }
+    else res.send("<p></p>");
+
 });
 
 
