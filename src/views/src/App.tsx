@@ -3,7 +3,7 @@ import { IVisitor } from "./components/Visitor";
 import { Header } from "./components/Header";
 import { Welcome } from "./components/Welcome";
 import { VisitorBlock } from "./components/VisitorBlock";
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./App.css";
 
