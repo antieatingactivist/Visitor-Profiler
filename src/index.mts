@@ -8,6 +8,7 @@ import { Visitor } from "./models/index.mjs";
 import { Op } from "sequelize";
 
 
+
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -22,8 +23,8 @@ app.set("trust proxy", true);
 
 
 app.get("/hit", async function(req, res) {
-    const ip: string = req.headers["x-forwarded-for"] as string;
-    // const ip = "11.0.0.0";
+    // const ip: string = req.headers["x-forwarded-for"] as string;
+    const ip = "11.0.0.0";
     
     if (ip && ip.split(".")[0] !== "10") {
         const location = await axios.get(`https://api.ipdata.co/${ip}?api-key=${API_KEY}`);
@@ -31,12 +32,13 @@ app.get("/hit", async function(req, res) {
 
         await Visitor.create({
             data: object,
-            ip: ip,
-            
+            ip: ip,  
         });
     }
     // res.send("<p></p>");
-    res.redirect("/welcome");
+    console.log(ip);
+    res.redirect(`/welcome?ip=${ip}`);
+    // res.send("<div class='basic-div container' style='text-align: center;'>Welcome</div>");
 });
 
 

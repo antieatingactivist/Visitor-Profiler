@@ -7,7 +7,7 @@ p {
   margin : 2px;
 }
 
-button {
+button, .button {
   transition: background-color 0.5s;
   position: relative;
   font-size: 1em;
@@ -17,14 +17,15 @@ button {
   color: #ffffff;
   box-shadow: 2px 1px 1px #00000066;
   border-radius: 3px;
-  cursor: pointer; 
+  cursor: pointer;
+  text-decoration: none;
 }
 
-button:hover {
+button:hover, .button:hover {
   background-color: #ffffff11;
 }
 
-button:active {
+button:active, .button:active {
   left: 2px;
   top: 1px;
   box-shadow: none;
