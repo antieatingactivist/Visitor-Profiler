@@ -7,7 +7,7 @@ interface Props {
     getRaw: (id: number) => void,
     visitor: IVisitor;
     showOtherVisits?: boolean;
-    setShowOtherVisits?: (boolean: boolean) => void;
+    setShowOtherVisits?: (state: boolean) => void;
     show: (id: number) => void;
     hide: (id: number) => void;
 }
