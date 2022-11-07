@@ -125,7 +125,6 @@ app.get("*", (req,res) =>{
 function parseData(visitor: Visitor, otherVisits?: Visitor[]) {
     let data: object;
     try {
-        
         data = {
             hidden: visitor.hidden,
             id: visitor.id,
@@ -133,7 +132,7 @@ function parseData(visitor: Visitor, otherVisits?: Visitor[]) {
             time: new Date(visitor.createdAt).toLocaleString(),
             unixTime: new Date(visitor.createdAt).getTime(),  
         };
-        const data2 = {
+        return {
             ...data,
             userAgent: visitor.data["user-agent"],
             city: visitor.data["location"]["city"],
@@ -141,10 +140,10 @@ function parseData(visitor: Visitor, otherVisits?: Visitor[]) {
             country: `${visitor.data["location"]["country_name"]}`,
             flag: `${visitor.data["location"]["emoji_flag"]}`,
             otherVisits: otherVisits?.map( (visit: Visitor ) => {
-                return {...parseData(visit)};
+                return parseData(visit);
             })
         };
-        return data2;
+        
     } catch {
         console.error("Parsing Error");
         return data;
