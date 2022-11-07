@@ -73,7 +73,7 @@ app.get("/raw", async function(_req, res) {
 });
 
 app.get("/count", async function(_req, res) {
-    const { count } = await Visitor.findAndCountAll({});
+    const count = await Visitor.count({});
     res.json(count);  
 });
 
