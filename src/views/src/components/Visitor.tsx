@@ -82,7 +82,6 @@ export function Visitor(props: Props) {
                 <ButtonBlock {...buttonProps} />
             }
             <div className="flag">
-
                 {visitor.flag}
             </div>
         </div>

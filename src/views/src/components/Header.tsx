@@ -21,13 +21,21 @@ export function Header({getData, reversed, setReversed}: Props) {
     
     return (
         <div className="basic-div">
-            {count} Visitors
+            <p>{count} Visitors</p>
             <div className="button-block">
                 <button onClick={() => setReversed(!reversed)}>
-                    {reversed ?  <><i className="bi bi-caret-up-fill"></i> Time </> : <><i className="bi bi-caret-down-fill"></i> Time</>} 
+                    {reversed ?  
+                        <>
+                            <i className="bi bi-caret-up-fill"></i> Time </> : <><i className="bi bi-caret-down-fill"></i> Time
+                        </>
+                    } 
                 </button>
                 <button onClick={() => {getData(!showHidden); setShowHidden(!showHidden);}}>
-                    {showHidden ?  <>Hide Hidden</> : <>Show All</>} 
+                    {showHidden ?  
+                        <>Hide Hidden</> 
+                        : 
+                        <>Show All</>
+                    } 
                 </button>
             </div>
         </div>
