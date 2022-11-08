@@ -37,7 +37,7 @@ function App() {
     return (
         <div>
             <Routes>
-                <Route path="/" element={<><Outlet /></>}>
+                <Route path="/" element={<Outlet />}>
                     <Route index element={<div></div>} />
                     <Route path="welcome" element={<Welcome />} />
                     <Route path="stats" element={
