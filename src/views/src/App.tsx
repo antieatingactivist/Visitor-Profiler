@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { IVisitor } from "./components/Visitor";
 import { Header } from "./components/Header";
 import { Welcome } from "./components/Welcome";
