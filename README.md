@@ -18,6 +18,7 @@ A simple node app that collects header data from visitors, and gets the location
 - Add new database to mySQL `CREATE DATABASE visitor_db;`
 - Start server `npm start`
 - Navigate to http://localhost:3004/stats (port can be changed in the .env file)
+- Create a link or fetch/axios/ajax request to http://localhost:3004/hit to record the IP of the visitor.
 
 ## Deployed link
 
