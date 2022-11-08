@@ -14,6 +14,7 @@ A simple node app that collects header data from visitors, and gets the location
 - Move into cloned directory `cd Visitor-Tracker`
 - Install dependencies `npm install`
 - Set up environment variables by renaming .env.EXAMPLE to .env and adding your mySQL username and password.
+- Register an API key at https://ipdata.co and paste that key in the .env file beside API_KEY.
 - Add new database to mySQL `CREATE DATABASE visitor_db;`
 - Start server `npm start`
 - Navigate to http://localhost:3004/stats (port can be changed in the .env file)
