@@ -7,7 +7,7 @@ import { Routes, Route, Outlet } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./App.css";
 
-const dataPath = process.env.NODE_ENV === "development" ? "http://localhost:3004" : "";
+const dataPath = process.env.NODE_ENV === "development" ? `http://localhost:${process.env.PORT}` : "";
 
 function App() {
     const [visitorData, setVisitorData] = useState<IVisitor[]>([]);
