@@ -1,4 +1,4 @@
-import express from "express";
+import express, {Response, Request} from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import path from "path";
@@ -19,7 +19,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, "views")));
 app.set("trust proxy", true);
 
-app.get("/hit", async function(req, res) {
+app.get("/hit", async function(req: Request, res: Response) {
     const ip: string = req.headers["x-forwarded-for"] as string || "69.69.69.69";
     
     if (ip && ip.split(".")[0] !== ("10" || "192")) {
@@ -43,13 +43,13 @@ app.get("/hit", async function(req, res) {
 
 });
 
-app.get("/raw/:id", async function(req, res) {
+app.get("/raw/:id", async function(req: Request, res: Response) {
     const data = await Visitor.findByPk(req.params.id, {});
     console.log(req.params.id);
     res.json(data);  
 });
 
-app.put("/hide/:id", async function(req, res) {
+app.put("/hide/:id", async function(req: Request, res: Response) {
     const data = await Visitor.update(
         { hidden: true },
         { where: {id: req.params.id}}
@@ -58,7 +58,7 @@ app.put("/hide/:id", async function(req, res) {
     res.json(data);
 });
 
-app.put("/show/:id", async function(req, res) {
+app.put("/show/:id", async function(req: Request, res: Response) {
     const data = await Visitor.update(
         { hidden: false },
         { where: {id: req.params.id}}
@@ -67,17 +67,17 @@ app.put("/show/:id", async function(req, res) {
     res.json(data);
 });
 
-app.get("/raw", async function(_req, res) {
+app.get("/raw", async function(_ :never, res: Response) {
     const data = await Visitor.findAll({});
     res.json(data);  
 });
 
-app.get("/count", async function(_req, res) {
+app.get("/count", async function(_ :never, res: Response) {
     const count = await Visitor.count({});
     res.json(count);  
 });
 
-app.get("/data", async function(req, res) {
+app.get("/data", async function(req: Request, res: Response) {
     console.log(req.query);
     const responseData = [];
     let visitors: Visitor[];
@@ -123,7 +123,7 @@ app.get("/data", async function(req, res) {
     res.json(responseData);  
 });
 
-app.get("*", (req,res) =>{
+app.get("*", (_ :never, res: Response) =>{
     res.sendFile(path.join(__dirname+"/views/index.html"));
 });
 
