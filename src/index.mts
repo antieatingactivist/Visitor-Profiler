@@ -110,7 +110,12 @@ app.get("/data", async function(req, res) {
         const object = parseData(visitor, otherVisits);
  
 
-        if (!(visitor["from"]?.includes("bot") || object["userAgent"]?.includes("Expanse"))) {
+        if (!(visitor["from"]?.includes("bot") 
+            || object["userAgent"]?.includes("Expanse")
+            || object["userAgent"]?.includes("bot")
+            || object["userAgent"]?.includes("Bot"))
+            
+            ) {
             responseData.push(object);
         }
     }
